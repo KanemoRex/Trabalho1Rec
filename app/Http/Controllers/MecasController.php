@@ -8,6 +8,7 @@ class MecasController extends Controller
 {
     public function index()
     {
-        return view('mecas');
+        return view('mecas'); // Certifique-se de que você tem um arquivo mecas.blade.php em resources/views
     }
 }
+

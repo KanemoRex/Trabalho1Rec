@@ -8,6 +8,6 @@ class CompararController extends Controller
 {
     public function index()
     {
-        return view('comparar');
+        return view('comparar'); // Certifique-se de que você tem um arquivo comparar.blade.php em resources/views
     }
 }
