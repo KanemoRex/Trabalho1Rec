@@ -60,6 +60,16 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra sutil para destacar as seções */
+            margin-bottom: 20px; /* Espaçamento entre as seções */
+            display: flex; /* Flexbox para layout */
+            align-items: center; /* Alinhamento vertical */
+            gap: 20px; /* Espaçamento entre imagem e texto */
+        }
+        .content-section img {
+            width: 150px; /* Largura das imagens */
+            height: auto; /* Manter a proporção */
+            border-radius: 8px; /* Borda arredondada */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para as imagens */
         }
         .content-section h2 {
             color: #00d4ff; /* Cor futurista */
@@ -94,16 +104,25 @@
             <p>Explore nossas categorias de mechas e encontre o que melhor atende suas necessidades.</p>
         </div>
         <div class="content-section">
-            <h2>Combate</h2>
-            <p>Mecas projetados para batalha com armaduras pesadas e armas de alto calibre.</p>
+            <img src="images/ut1.jpg" alt="Combate">
+            <div>
+                <h2>Combate</h2>
+                <p>Mecas projetados para batalha com armaduras pesadas e armas de alto calibre.</p>
+            </div>
         </div>
         <div class="content-section">
-            <h2>Suporte</h2>
-            <p>Mecas de suporte com ferramentas para reparo e auxílio técnico em campo.</p>
+            <img src="images/ut2.jpg" alt="Suporte">
+            <div>
+                <h2>Suporte</h2>
+                <p>Mecas de suporte com ferramentas para reparo e auxílio técnico em campo.</p>
+            </div>
         </div>
         <div class="content-section">
-            <h2>Exploração</h2>
-            <p>Mecas especializados em exploração de terrenos desconhecidos com sensores avançados.</p>
+            <img src="images/ut3.jpg" alt="Exploração">
+            <div>
+                <h2>Exploração</h2>
+                <p>Mecas especializados em exploração de terrenos desconhecidos com sensores avançados.</p>
+            </div>
         </div>
     </div>
     <div class="footer">
