@@ -84,6 +84,33 @@
             font-size: 16px;
             margin-top: 20px;
         }
+        .panel {
+            background: #1e1e1e;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: max-height 0.5s ease-out;
+            overflow: hidden;
+            max-height: 0;
+        }
+        .panel.active {
+            max-height: 500px; /* Ajuste a altura máxima conforme necessário */
+        }
+        .toggle-btn {
+            background: #00d4ff;
+            color: #0d0d0d;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+        .toggle-btn:hover {
+            background: #ff4a57;
+        }
     </style>
 </head>
 <body>
@@ -93,13 +120,13 @@
         <a href="/suporte">Suporte</a>
         <a href="/categorias">Categorias</a>
         <a href="/comparar">Comparar</a>
-   
     </nav>
     <div class="container">
         <div class="header">
             <h1>Bem-Vindo à Mecas de Titânio</h1>
             <p>A Corporação Nibelung tem o orgulho de apresentar Mecas de Titânio, seu portal para robôs mechas de última geração. Nossa missão é equipar pilotos e guerreiros com as melhores máquinas de combate para qualquer missão.</p>
         </div>
+       
         <div class="content-section">
             <h2>A Lenda de Valkar</h2>
             <p>Em um distante planeta chamado Valkar, a loja Mecas de Titânio era conhecida por fornecer os robôs mechas mais avançados do universo. O comandante Erdrin e a engenheira Lyria procuraram a loja em busca de mechas para suas missões. Equipados com um modelo de combate pesado e um mecha de suporte técnico, enfrentaram invasões alienígenas e exploraram territórios desconhecidos. Com coragem e estratégia, protegeram Valkar, tornando-se lendas em seu tempo.</p>
@@ -134,5 +161,6 @@
     <div class="footer">
         <p>© 2024 Mecas de Titânio. Todos os direitos reservados.</p>
     </div>
+  
 </body>
 </html>
