@@ -8,6 +8,7 @@ use App\Http\Controllers\CompararController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Api\MechaController;
 
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/categorias', [CategoriasController::class, 'index'])->name('categorias');
 Route::get('/comparar', [CompararController::class, 'index'])->name('comparar');
