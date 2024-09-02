@@ -6,7 +6,6 @@ use App\Http\Controllers\SuporteController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\CompararController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Api\MechaController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -26,3 +25,4 @@ Route::get('/suporte', [SuporteController::class, 'index'])->name('suporte.index
 Route::post('/suporte', [SuporteController::class, 'store'])->name('suporte.store');
 Route::delete('/suporte/{id}', [SuporteController::class, 'destroy'])->name('suporte.destroy');
 
+Route::get('/mechas', [HomeController::class, 'getMechas']);

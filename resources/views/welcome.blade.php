@@ -126,6 +126,7 @@
             <h1>Bem-Vindo à Mecas de Titânio</h1>
             <p>A Corporação Nibelung tem o orgulho de apresentar Mecas de Titânio, seu portal para robôs mechas de última geração. Nossa missão é equipar pilotos e guerreiros com as melhores máquinas de combate para qualquer missão.</p>
         </div>
+
        
         <div class="content-section">
             <h2>A Lenda de Valkar</h2>
@@ -145,10 +146,6 @@
             </ul>
         </div>
         <div class="content-section">
-            <h2>Nossos Produtos</h2>
-            <p>Oferecemos uma ampla variedade de mechas, desde unidades de combate pesado a robôs de suporte e defesa. Cada mecha é meticulosamente projetado para garantir eficácia e segurança nas suas batalhas.</p>
-        </div>
-        <div class="content-section">
             <h2>Suporte</h2>
             <p>Se você tiver dúvidas ou precisar de orientação, nossa equipe está disponível para ajudar. Atendemos 24 horas por dia, prontos para conectar você ao mecha certo.</p>
         </div>
@@ -161,6 +158,37 @@
     <div class="footer">
         <p>© 2024 Mecas de Titânio. Todos os direitos reservados.</p>
     </div>
-  
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('http://localhost:3000/mechas')
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.mechas && Array.isArray(data.mechas)) {
+                        let mechasContainer = document.getElementById('mechas-container');
+                        let list = document.createElement('ul');
+                        data.mechas.forEach(mecha => {
+                            if (mecha.name && mecha.description && mecha.price && Array.isArray(mecha.features)) {
+                                let item = document.createElement('li');
+                                item.innerHTML = `
+                                    <strong>${mecha.name}</strong>: ${mecha.description} - $${mecha.price}<br>
+                                    <strong>Características:</strong>
+                                    <ul>
+                                        ${mecha.features.map(f => `<li>${f}</li>`).join('')}
+                                    </ul>
+                                `;
+                                list.appendChild(item);
+                            } else {
+                                console.error('Mecha inválido:', mecha);
+                            }
+                        });
+                        mechasContainer.appendChild(list);
+                    } else {
+                        console.error('Dados de mechas inválidos ou não encontrados.');
+                    }
+                })
+                .catch(error => console.error('Erro ao carregar mechas:', error));
+        });
+    </script>
 </body>
 </html>
