@@ -239,9 +239,9 @@
     </div>
 
     <!-- Script do Google Maps -->
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
-    </script>
+     <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15621.281741733!2d-122.42039462527772!3d37.77397286856067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858090d31857ff%3A0xf77d12cfbb1b7f18!2sGolden%20Gate%20Bridge!5e0!3m2!1sen!2sus!4v1635205956661!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
     <script>
         function initMap() {
             var mapOptions = {
