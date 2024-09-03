@@ -164,11 +164,12 @@
 </head>
 <body>
     <nav>
-        <a href="/">Início</a>
+    <a href="/">Início</a>
         <a href="/mecas">Mecas</a>
         <a href="/suporte">Suporte</a>
         <a href="/categorias">Categorias</a>
         <a href="/comparar">Comparar</a>
+        <a href="/pecas">Peças</a>
     </nav>
     <div class="container">
         <div class="header">

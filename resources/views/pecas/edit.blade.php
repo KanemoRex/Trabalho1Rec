@@ -1,9 +1,10 @@
+<!-- resources/views/pecas/edit.blade.php -->
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mecas de Titânio - Mecas</title>
+    <title>Mecas de Titânio - Editar Peça</title>
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     <style>
         body {
@@ -45,7 +46,7 @@
         }
         .header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
         .header h1 {
             color: #ffffff;
@@ -66,54 +67,70 @@
         .header a:hover {
             background-color: #00b0ff;
         }
-        .header p {
-            color: #aaaaaa;
-        }
         .content-section {
             background-color: #1e1e1e;
-            padding: 20px;
+            padding: 30px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin: 0 auto;
+            max-width: 800px;
         }
         .content-section h2 {
             color: #00d4ff;
             font-size: 24px;
-            margin-bottom: 10px;
-        }
-        .content-section p {
-            color: #cccccc;
-            margin-bottom: 10px;
-        }
-        .content-section a {
-            display: inline-block;
-            background-color: #00d4ff;
-            color: #0d0d0d;
-            padding: 8px 15px;
-            border-radius: 4px;
-            font-size: 16px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-right: 10px;
-            transition: background-color 0.3s;
-        }
-        .content-section a:hover {
-            background-color: #00b0ff;
+            margin-bottom: 20px;
         }
         .content-section form {
-            display: inline;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
-        .content-section button {
-            background-color: #ff4a57;
-            color: #0d0d0d;
-            border: none;
-            padding: 8px 15px;
+        .content-section label {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .content-section input, .content-section textarea {
+            background-color: #333;
+            color: #e0e0e0;
+            border: 1px solid #444;
+            padding: 12px;
             border-radius: 4px;
             font-size: 16px;
+            width: 100%;
+        }
+        .content-section textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .content-section button {
+            background-color: #00d4ff;
+            color: #0d0d0d;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            font-size: 18px;
             cursor: pointer;
             transition: background-color 0.3s;
+            align-self: center;
         }
         .content-section button:hover {
+            background-color: #00b0ff;
+        }
+        .alert-danger {
             background-color: #e03e3e;
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .alert-danger ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .alert-danger li {
+            margin-bottom: 10px;
         }
         .footer {
             text-align: center;
@@ -127,36 +144,48 @@
 </head>
 <body>
     <nav>
-    <a href="/">Início</a>
+        <a href="/">Início</a>
         <a href="/mecas">Mecas</a>
         <a href="/suporte">Suporte</a>
         <a href="/categorias">Categorias</a>
         <a href="/comparar">Comparar</a>
-        <a href="/pecas">Peças</a>
     </nav>
     <div class="container">
         <div class="header">
-            <h1>Lista de Mecas</h1>
-            <a href="{{ route('mecas.create') }}">Adicionar Novo Meca</a>
-            @if(session('success'))
-                <p>{{ session('success') }}</p>
-            @endif
+            <h1>Editar Peça</h1>
         </div>
+
+        @if ($errors->any())
+            <div class="alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="content-section">
-            @foreach($mecas as $meca)
+            <form action="{{ route('pecas.update', $peca->id) }}" method="POST">
+                @csrf
+                @method('PUT')
                 <div>
-                    <h2>{{ $meca->nome }}</h2>
-                    <p><strong>Descrição:</strong> {{ $meca->descricao }}</p>
-                    <!-- Categoria removida -->
-                    <a href="{{ route('mecas.show', $meca->id) }}">Ver Detalhes</a>
-                    <a href="{{ route('mecas.edit', $meca->id) }}">Editar</a>
-                    <form action="{{ route('mecas.destroy', $meca->id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">Deletar</button>
-                    </form>
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" value="{{ old('nome', $peca->nome) }}" required>
                 </div>
-            @endforeach
+
+                <div>
+                    <label for="descricao">Descrição:</label>
+                    <textarea id="descricao" name="descricao" required>{{ old('descricao', $peca->descricao) }}</textarea>
+                </div>
+
+                <div>
+                    <label for="preco">Preço:</label>
+                    <input type="number" id="preco" name="preco" value="{{ old('preco', $peca->preco) }}" required>
+                </div>
+
+                <button type="submit">Atualizar</button>
+            </form>
         </div>
     </div>
     <div class="footer">

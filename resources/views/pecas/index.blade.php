@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mecas de Titânio - Mecas</title>
+    <title>Mecas de Titânio - Peças</title>
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     <style>
         body {
@@ -75,14 +75,22 @@
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-        .content-section h2 {
-            color: #00d4ff;
-            font-size: 24px;
-            margin-bottom: 10px;
+        .content-section ul {
+            list-style-type: none;
+            padding: 0;
         }
-        .content-section p {
-            color: #cccccc;
+        .content-section li {
+            background-color: #2e2e2e;
+            padding: 15px;
+            border-radius: 4px;
             margin-bottom: 10px;
+            color: #cccccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .content-section li strong {
+            color: #00d4ff;
         }
         .content-section a {
             display: inline-block;
@@ -98,9 +106,6 @@
         }
         .content-section a:hover {
             background-color: #00b0ff;
-        }
-        .content-section form {
-            display: inline;
         }
         .content-section button {
             background-color: #ff4a57;
@@ -123,6 +128,21 @@
             font-size: 16px;
             margin-top: 20px;
         }
+        .chat-button {
+            display: inline-block;
+            background-color: #0088cc;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 18px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .chat-button:hover {
+            background-color: #007bb5;
+        }
     </style>
 </head>
 <body>
@@ -136,27 +156,32 @@
     </nav>
     <div class="container">
         <div class="header">
-            <h1>Lista de Mecas</h1>
-            <a href="{{ route('mecas.create') }}">Adicionar Novo Meca</a>
-            @if(session('success'))
-                <p>{{ session('success') }}</p>
+            <h1>Peças de Mecas</h1>
+            <a href="{{ route('pecas.create') }}">Adicionar Nova Peça</a>
+            @if($message = Session::get('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ $message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
             @endif
+            <a href="https://t.me/SeuBotTelegram" class="chat-button">Iniciar Chat no Telegram</a>
         </div>
         <div class="content-section">
-            @foreach($mecas as $meca)
-                <div>
-                    <h2>{{ $meca->nome }}</h2>
-                    <p><strong>Descrição:</strong> {{ $meca->descricao }}</p>
-                    <!-- Categoria removida -->
-                    <a href="{{ route('mecas.show', $meca->id) }}">Ver Detalhes</a>
-                    <a href="{{ route('mecas.edit', $meca->id) }}">Editar</a>
-                    <form action="{{ route('mecas.destroy', $meca->id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">Deletar</button>
-                    </form>
-                </div>
-            @endforeach
+            <ul>
+                @foreach ($pecas as $peca)
+                    <li>
+                        <strong>{{ $peca->nome }}</strong> - {{ $peca->descricao }} - ${{ $peca->preco }}
+                        <div>
+                            <a href="{{ route('pecas.edit', $peca->id) }}">Editar</a>
+                            <form action="{{ route('pecas.destroy', $peca->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Deletar</button>
+                            </form>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
         </div>
     </div>
     <div class="footer">

@@ -6,7 +6,7 @@ use App\Http\Controllers\SuporteController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\CompararController;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\PecaController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/categorias', [CategoriasController::class, 'index'])->name('categorias');
@@ -26,3 +26,7 @@ Route::post('/suporte', [SuporteController::class, 'store'])->name('suporte.stor
 Route::delete('/suporte/{id}', [SuporteController::class, 'destroy'])->name('suporte.destroy');
 
 Route::get('/mechas', [HomeController::class, 'getMechas']);
+
+
+Route::resource('pecas', PecaController::class);
+

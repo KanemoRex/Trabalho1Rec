@@ -120,6 +120,7 @@
         <a href="/suporte">Suporte</a>
         <a href="/categorias">Categorias</a>
         <a href="/comparar">Comparar</a>
+        <a href="/pecas">Peças</a>
     </nav>
     <div class="container">
         <div class="header">
